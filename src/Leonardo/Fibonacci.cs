@@ -10,9 +10,13 @@ public class Fibonacci
             return 1;
         return Run(i - 1) + Run(i - 2);
     }
-
-    public async Task<IList<int>> RunAsync(string[] args)
+    
+    public static async Task<IList<int>> RunAsync(string[] args)
     {
+        if (args.Length >= 100)
+        {
+            throw new ArgumentException("Too much");
+        }
         IList<int> results = new List<int>();
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();

@@ -1,28 +1,18 @@
 using Leonardo;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddTransient<Fibonacci>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
+    
+app.MapGet("/", () => "Hello World! 3");
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.MapGet("/Fibonacci", 
+    async () => await Fibonacci.RunAsync(new []{"44", "43"}));
+
+/*app.Run(context =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+    context.Response.StatusCode = 404;
+    context.Response.BodyWriter.WriteAsync(new byte[] { 0x48, 0x65, 0x6c, 0x6c, 0x6f });
+    return Task.CompletedTask;
+});*/
 
 app.Run();

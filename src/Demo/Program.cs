@@ -1,3 +1,7 @@
-﻿using Leonardo;
+﻿// See https://aka.ms/new-console-template for more information
 
-new Fibonacci().RunAsync(args).Wait();
+using Leonardo;
+
+var results = Fibonacci.RunAsync(args);
+Console.WriteLine($"Finished");
+results.Wait();
